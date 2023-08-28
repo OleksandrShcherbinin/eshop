@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 
 from .abstract_model import TimestampedModel
@@ -112,6 +113,11 @@ class Product(TimestampedModel):
         Size,
         related_name='products',
     )
+
+    def save(self, *args, **kwargs) -> None:
+        self.discount = Decimal(
+            round((float(self.price) / float(self.old_price)) * 100 - 100, 2))
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
