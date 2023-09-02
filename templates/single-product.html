@@ -12,60 +12,35 @@
                             <div class="col-lg-10 order-lg-2">
                                 <div class="single-product-thumbnail-wrap zoom-gallery">
                                     <div class="single-product-thumbnail product-large-thumbnail-3 axil-product">
+                                        {% for image in main_images %}
                                         <div class="thumbnail">
-                                            <a href="{% static 'images/product/product-big-01.png' %}" class="popup-zoom">
-                                                <img src="{% static 'images/product/product-big-01.png' %}" alt="Product Images">
+                                            <a href="javascript:void(0)" class="popup-zoom">
+                                                <img src="{{ image.image.url }}" alt="Product Images">
                                             </a>
                                         </div>
-                                        <div class="thumbnail">
-                                            <a href="{% static 'images/product/product-big-02.png' %}" class="popup-zoom">
-                                                <img src="{% static 'images/product/product-big-02.png' %}" alt="Product Images">
-                                            </a>
-                                        </div>
-                                        <div class="thumbnail">
-                                            <a href="{% static 'images/product/product-big-03.png' %}" class="popup-zoom">
-                                                <img src="{% static 'images/product/product-big-03.png' %}" alt="Product Images">
-                                            </a>
-                                        </div>
-                                        <div class="thumbnail">
-                                            <a href="{% static 'images/product/product-big-02.png' %}" class="popup-zoom">
-                                                <img src="{% static 'images/product/product-big-02.png' %}" alt="Product Images">
-                                            </a>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                     <div class="label-block">
-                                        <div class="product-badget">20% OFF</div>
-                                    </div>
-                                    <div class="product-quick-view position-view">
-                                        <a href="{% static 'images/product/product-big-01.png' %}" class="popup-zoom">
-                                            <i class="far fa-search-plus"></i>
-                                        </a>
+                                        <div class="product-badget">{% if product.discount %}{{ product.discount }}% OFF{% else %}{% endif %}</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-2 order-lg-1">
                                 <div class="product-small-thumb-3 small-thumb-wrapper">
+                                    {% for obj in product.images.all|slice:":4" %}
                                     <div class="small-thumb-img">
-                                        <img src="{% static 'images/product/product-thumb/thumb-08.png' %}" alt="thumb image">
+                                        <img src="{{ obj.image.url }}" alt="thumb image">
                                     </div>
-                                    <div class="small-thumb-img">
-                                        <img src="{% static 'images/product/product-thumb/thumb-07.png' %}" alt="thumb image">
-                                    </div>
-                                    <div class="small-thumb-img">
-                                        <img src="{% static 'images/product/product-thumb/thumb-09.png' %}" alt="thumb image">
-                                    </div>
-                                    <div class="small-thumb-img">
-                                        <img src="{% static 'images/product/product-thumb/thumb-07.png' %}" alt="thumb image">
-                                    </div>
-                                </div>
+                                    {% endfor %}
+                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-5 mb--40">
                         <div class="single-product-content">
                             <div class="inner">
-                                <h2 class="product-title">3D™ wireless headset</h2>
-                                <span class="price-amount">$155.00 - $255.00</span>
+                                <h2 class="product-title">{{ product.title }}</h2>
+                                <span class="price-amount">${{ product.price }}{% if product.old_price %} - ${{ product.old_price }}{% else %}{% endif %}</span>
                                 <div class="product-rating">
                                     <div class="star-rating">
                                         <i class="fas fa-star"></i>
@@ -80,10 +55,8 @@
                                 </div>
                                 <ul class="product-meta">
                                     <li><i class="fal fa-check"></i>In stock</li>
-                                    <li><i class="fal fa-check"></i>Free delivery available</li>
-                                    <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
                                 </ul>
-                                <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.</p>
+                                <p class="description">{{ product.description }}</p>
 
                                 <div class="product-variations-wrapper">
 
@@ -92,12 +65,10 @@
                                         <h6 class="title">Colors:</h6>
                                         <div class="color-variant-wrapper">
                                             <ul class="color-variant">
-                                                <li class="color-extra-01 active"><span><span class="color"></span></span>
+                                                {% for color in product.colors.all %}
+                                                <li class="color-extra-01 active"><span>{{ color.name }}<span class="color"></span></span>
                                                 </li>
-                                                <li class="color-extra-02"><span><span class="color"></span></span>
-                                                </li>
-                                                <li class="color-extra-03"><span><span class="color"></span></span>
-                                                </li>
+                                                {% endfor %}
                                             </ul>
                                         </div>
                                     </div>
@@ -173,32 +144,6 @@
                                     </div>
                                 </div>
                                 <!-- End .col-lg-6 -->
-                            </div>
-                            <!-- End .row -->
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <ul class="pro-des-features">
-                                        <li class="single-features">
-                                            <div class="icon">
-                                                <img src="{% static 'images/product/product-thumb/icon-3.png' %}" alt="icon">
-                                            </div>
-                                            Easy Returns
-                                        </li>
-                                        <li class="single-features">
-                                            <div class="icon">
-                                                <img src="{% static 'images/product/product-thumb/icon-2.png' %}" alt="icon">
-                                            </div>
-                                            Quality Service
-                                        </li>
-                                        <li class="single-features">
-                                            <div class="icon">
-                                                <img src="{% static 'images/product/product-thumb/icon-1.png' %}" alt="icon">
-                                            </div>
-                                            Original Product
-                                        </li>
-                                    </ul>
-                                    <!-- End .pro-des-features -->
-                                </div>
                             </div>
                             <!-- End .row -->
                         </div>
@@ -425,17 +370,18 @@
         <div class="container">
             <div class="section-title-wrapper">
                 <span class="title-highlighter highlighter-primary"><i class="far fa-shopping-basket"></i> Your Recently</span>
-                <h2 class="title">Viewed Items</h2>
+                <h2 class="title">Featured Items</h2>
             </div>
             <div class="recent-product-activation slick-layout-wrapper--15 axil-slick-arrow arrow-top-slide">
+                {% for product in featured_products %}
                 <div class="slick-single-layout">
                     <div class="axil-product">
                         <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="{% static 'images/product/electric/product-01.png' %}" alt="Product Images">
+                            <a href="{% url 'product' product.slug %}">
+                                <img src="{{ product.images.all.0.image.url }}" alt="Product Images">
                             </a>
                             <div class="label-block label-right">
-                                <div class="product-badget">20% OFF</div>
+                                <div class="product-badget">{% if product.discount %}{{ product.discount }}% OFF{% else %}{% endif %}</div>
                             </div>
                             <div class="product-hover-action">
                                 <ul class="cart-action">
@@ -447,301 +393,26 @@
                         </div>
                         <div class="product-content">
                             <div class="inner">
-                                <h5 class="title"><a href="single-product.html">3D™ wireless headset</a></h5>
+                                <h5 class="title"><a href="{% url 'product' product.slug %}">{{ product.title }}</a></h5>
                                 <div class="product-price-variant">
-                                    <span class="price old-price">$30</span>
-                                    <span class="price current-price">$30</span>
+                                    {% if product.old_price %}
+                                    <span class="price old-price">${{ product.old_price }}</span>
+                                    {% endif %}
+                                    <span class="price current-price">${{ product.price }}</span>
                                 </div>
                                 <div class="color-variant-wrapper">
                                     <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
+                                        {% for color in product.colors.all %}
+                                        <li class="color-extra-01 active"><span>{{ color.name }}<span class="color"></span></span>
                                         </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- End .slick-single-layout -->
-                <div class="slick-single-layout">
-                    <div class="axil-product">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="{% static 'images/product/electric/product-02.png' %}" alt="Product Images">
-                            </a>
-                            <div class="label-block label-right">
-                                <div class="product-badget">40% OFF</div>
-                            </div>
-                            <div class="product-hover-action">
-                                <ul class="cart-action">
-                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                    <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="inner">
-                                <h5 class="title"><a href="single-product.html">Media remote</a></h5>
-                                <div class="product-price-variant">
-                                    <span class="price old-price">$80</span>
-                                    <span class="price current-price">$50</span>
-                                </div>
-                                <div class="color-variant-wrapper">
-                                    <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .slick-single-layout -->
-                <div class="slick-single-layout">
-                    <div class="axil-product">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="{% static 'images/product/electric/product-03.png' %}" alt="Product Images">
-                            </a>
-                            <div class="label-block label-right">
-                                <div class="product-badget">30% OFF</div>
-                            </div>
-                            <div class="product-hover-action">
-                                <ul class="cart-action">
-                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                    <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="inner">
-                                <h5 class="title"><a href="single-product.html">HD camera</a></h5>
-                                <div class="product-price-variant">
-                                    <span class="price old-price">$60</span>
-                                    <span class="price current-price">$45</span>
-                                </div>
-                                <div class="color-variant-wrapper">
-                                    <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .slick-single-layout -->
-                <div class="slick-single-layout">
-                    <div class="axil-product">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="{% static 'images/product/electric/product-04.png' %}" alt="Product Images">
-                            </a>
-                            <div class="label-block label-right">
-                                <div class="product-badget">50% OFF</div>
-                            </div>
-                            <div class="product-hover-action">
-                                <ul class="cart-action">
-                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                    <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="inner">
-                                <h5 class="title"><a href="single-product.html">PS Remote Control</a></h5>
-                                <div class="product-price-variant">
-                                    <span class="price old-price">$70</span>
-                                    <span class="price current-price">$35</span>
-                                </div>
-                                <div class="color-variant-wrapper">
-                                    <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .slick-single-layout -->
-                <div class="slick-single-layout">
-                    <div class="axil-product">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="{% static 'images/product/electric/product-05.png' %}" alt="Product Images">
-                            </a>
-                            <div class="label-block label-right">
-                                <div class="product-badget">25% OFF</div>
-                            </div>
-                            <div class="product-hover-action">
-                                <ul class="cart-action">
-                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                    <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="inner">
-                                <h5 class="title"><a href="single-product.html">PS Remote Control</a></h5>
-                                <div class="product-price-variant">
-                                    <span class="price old-price">$50</span>
-                                    <span class="price current-price">$38</span>
-                                </div>
-                                <div class="color-variant-wrapper">
-                                    <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .slick-single-layout -->
-                <!-- End .slick-single-layout -->
-                <div class="slick-single-layout">
-                    <div class="axil-product">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="{% static 'images/product/electric/product-03.png' %}" alt="Product Images">
-                            </a>
-                            <div class="label-block label-right">
-                                <div class="product-badget">30% OFF</div>
-                            </div>
-                            <div class="product-hover-action">
-                                <ul class="cart-action">
-                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                    <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="inner">
-                                <h5 class="title"><a href="single-product.html">HD camera</a></h5>
-                                <div class="product-price-variant">
-                                    <span class="price old-price">$60</span>
-                                    <span class="price current-price">$45</span>
-                                </div>
-                                <div class="color-variant-wrapper">
-                                    <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .slick-single-layout -->
-                <div class="slick-single-layout">
-                    <div class="axil-product">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="{% static 'images/product/electric/product-04.png' %}" alt="Product Images">
-                            </a>
-                            <div class="label-block label-right">
-                                <div class="product-badget">50% OFF</div>
-                            </div>
-                            <div class="product-hover-action">
-                                <ul class="cart-action">
-                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                    <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="inner">
-                                <h5 class="title"><a href="single-product.html">PS Remote Control</a></h5>
-                                <div class="product-price-variant">
-                                    <span class="price old-price">$70</span>
-                                    <span class="price current-price">$35</span>
-                                </div>
-                                <div class="color-variant-wrapper">
-                                    <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .slick-single-layout -->
-                <div class="slick-single-layout">
-                    <div class="axil-product">
-                        <div class="thumbnail">
-                            <a href="single-product.html">
-                                <img src="{% static 'images/product/electric/product-05.png' %}" alt="Product Images">
-                            </a>
-                            <div class="label-block label-right">
-                                <div class="product-badget">25% OFF</div>
-                            </div>
-                            <div class="product-hover-action">
-                                <ul class="cart-action">
-                                    <li class="wishlist"><a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                    <li class="select-option"><a href="cart.html">Add to Cart</a></li>
-                                    <li class="quickview"><a href="#" data-bs-toggle="modal" data-bs-target="#quick-view-modal"><i class="far fa-eye"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <div class="inner">
-                                <h5 class="title"><a href="single-product.html">PS5 Remote Control</a></h5>
-                                <div class="product-price-variant">
-                                    <span class="price old-price">$50</span>
-                                    <span class="price current-price">$38</span>
-                                </div>
-                                <div class="color-variant-wrapper">
-                                    <ul class="color-variant">
-                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                        </li>
-                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End .slick-single-layout -->
-
+                {% endfor %}
             </div>
         </div>
     </div>

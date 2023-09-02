@@ -140,11 +140,11 @@
                     <!-- End .row -->
                     <div class="row row--15">
                         {% for product in prods %}
-                        {% include 'product.html' %}
+                        {% include 'listing-product.html' %}
                         {% endfor %}
                     </div>
                     <div class="text-center pt--20">
-                        <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Load more</a>
+                        {% include 'pagination.html' %}
                     </div>
                 </div>
             </div>
