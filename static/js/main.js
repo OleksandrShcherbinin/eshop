@@ -204,9 +204,9 @@
         priceRangeSlider: function(e) {
             $('#slider-range').slider({
                 range: true,
-                min: 0,
-                max: 5000,
-                values: [0, 3000],
+                min: 149,
+                max: 17999,
+                values: [149, 17999],
                 slide: function(event, ui) {
                     $('#amount').val('$' + ui.values[0] + '  $' + ui.values[1]);
                 }
