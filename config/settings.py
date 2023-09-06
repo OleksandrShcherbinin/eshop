@@ -55,8 +55,10 @@ INSTALLED_APPS = [
 
     'users',
     'shop',
+    'website',
 
     'django_cleanup.apps.CleanupConfig',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -186,3 +188,9 @@ LOGGING = {
         },
     },
 }
+
+EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
+EMAIL_HOST_USER = '772e1e20691580'
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = '2525'
+DEFAULT_FROM_EMAIL = 'beetroot_django@email.com'
