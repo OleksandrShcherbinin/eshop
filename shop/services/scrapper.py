@@ -65,7 +65,8 @@ def write_to_db(data: dict) -> None:
         slug=f"{slugify(anyascii(data['Title']))}-{data['Url'].split('/')[-1]}",
         defaults={
             'title': data['Title'],
-            'description': data['Description'][0] if data['Description'] else None,
+            'description': data['Description'][0]
+            if data['Description'] else None,
             'price': data['Price'],
             'old_price': data['Old price'],
             'discount': data['Discount'],

@@ -25,7 +25,9 @@ def product_main_images_selector(product: Product) -> QuerySet[Image]:
     return Image.objects.filter(product=product).order_by('-size')[:4]
 
 
-def single_product_featured_items_selector(product: Product) -> QuerySet[Product]:
+def single_product_featured_items_selector(
+        product: Product
+) -> QuerySet[Product]:
     return Product.objects.prefetch_related(
         Prefetch(
             'images',

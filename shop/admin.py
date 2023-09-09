@@ -17,7 +17,9 @@ class BrandAdmin(admin.ModelAdmin):
 
     @staticmethod
     def picture(obj):
-        return format_html(f'<img src="{obj.logo.url}" style="max-width: 50px">')
+        return format_html(
+            f'<img src="{obj.logo.url}" style="max-width: 50px">'
+        )
 
 
 class ColorAdmin(admin.ModelAdmin):
@@ -47,7 +49,9 @@ class ImageAdmin(admin.ModelAdmin):
 
     @staticmethod
     def picture(obj):
-        return format_html(f'<img src="{obj.image.url}" style="max-width: 100px">')
+        return format_html(
+            f'<img src="{obj.image.url}" style="max-width: 100px">'
+        )
 
 
 class ImageInlineAdmin(admin.TabularInline):
@@ -58,7 +62,9 @@ class ImageInlineAdmin(admin.TabularInline):
 
     @staticmethod
     def picture(obj):
-        return format_html(f'<img src="{obj.image.url}" style="max-width: 80px">')
+        return format_html(
+            f'<img src="{obj.image.url}" style="max-width: 80px">'
+        )
 
 
 @admin.register(Product)

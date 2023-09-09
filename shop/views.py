@@ -1,7 +1,7 @@
 from typing import Any
 
 from django.db.models import Prefetch, Max, Min
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, ListView, DetailView
 
 from . models import Category, Image, Product
@@ -84,6 +84,8 @@ class ProductView(DetailView):
         context = super().get_context_data(**kwargs)
         context |= {
             'main_images': product_main_images_selector(self.object),
-            'featured_items': single_product_featured_items_selector(self.object)
+            'featured_items': single_product_featured_items_selector(
+                self.object
+            )
         }
         return context

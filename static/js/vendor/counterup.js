@@ -1,7 +1,7 @@
 
 
 /*=========================
-    CounterUp 
+    CounterUp
 ============================*/
 /*!
 * jquery.counterup.js 1.0

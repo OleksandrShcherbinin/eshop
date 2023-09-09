@@ -7,11 +7,16 @@ repos:
     -   id: trailing-whitespace
     -   id: requirements-txt-fixer
 
--   repo: https://github.com/PyCQA/flake8
+-   repo: https://github.com/pycqa/flake8
     rev: 6.1.0
     hooks:
     -   id: flake8
         additional_dependencies: [
-            flake8-django
+            flake8-django,
+            flake8-print,
+            flake8-return,
+            flake8-breakpoint,
+            flake8-blind-except,
+            flake8-bugbear
         ]
         args: ['--max-line-length=80']
