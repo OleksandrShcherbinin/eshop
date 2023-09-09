@@ -1,0 +1,14 @@
+[flake8]
+multiline-quotes = """
+docstring-quotes = """
+max-line-length = 80
+
+exclude =
+    .git,
+    .idea,
+    *migrations*,
+    .venv
+
+extend_ignore =
+    R502,  # exclude return None requirement
+    R503,  # you should add explicit return at end of the function if function have return value except None
