@@ -16,6 +16,7 @@ flake8==6.1.0
 identify==2.5.27
 idna==3.4
 mccabe==0.7.0
+model-bakery==1.15.0
 nodeenv==1.8.0
 Pillow==10.0.0
 platformdirs==3.10.0

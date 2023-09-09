@@ -1,11 +1,13 @@
 from django.contrib import messages
 from django.contrib.postgres.search import TrigramWordSimilarity
-from django.db.models import Prefetch
 from django.views.generic import FormView, ListView
 from django.urls import reverse
 
-from shop.models import Product, Image
-from shop.selectors import highest_price_products_selector
+from shop.models import Product
+from shop.selectors import (
+    highest_price_products_selector,
+    product_prefetched_images_by_size_selector,
+)
 from utils.send_email import send_html_email
 from . forms import ContactForm
 from . models import Contact
@@ -41,7 +43,7 @@ class ContactUsView(FormView):
                     reverse('catalog', kwargs={'slug': 'vin'})
                 ),
                 'message': message,
-                'products': highest_price_products_selector()
+                'products': highest_price_products_selector()[:4]
             }
         )
         messages.add_message(
@@ -73,12 +75,7 @@ class SearchView(ListView):
         return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Product.objects.prefetch_related(
-            Prefetch(
-                'images',
-                queryset=Image.objects.order_by('-size')
-            )
-        ).annotate(
+        return product_prefetched_images_by_size_selector().annotate(
             similarity=self._create_word_similarity()
         ).filter(
             similarity__gte=0.3

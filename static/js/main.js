@@ -16,7 +16,6 @@
 
         methods: function(e) {
             axilInit.w();
-            axilInit.contactForm();
             axilInit.axilBackToTop();
             axilInit.shopFilterWidget();
             axilInit.mobileMenuActivation();
@@ -46,8 +45,6 @@
             axilInit.scrollSmoth();
             axilInit.onLoadClassAdd();
             axilInit.dropdownMenuSlide();
-
-
         },
 
         w: function(e) {
@@ -170,9 +167,9 @@
         priceRangeSlider: function(e) {
             $('#slider-range').slider({
                 range: true,
-                min: 149,
-                max: 17999,
-                values: [149, 17999],
+                min: 0,
+                max: 5000,
+                values: [0, 3000],
                 slide: function(event, ui) {
                     $('#amount').val('$' + ui.values[0] + '  $' + ui.values[1]);
                 }

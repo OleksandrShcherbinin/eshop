@@ -20,3 +20,12 @@ repos:
             flake8-bugbear
         ]
         args: ['--max-line-length=80']
+
+-   repo: local
+    hooks:
+        - id: django-test
+          name: Run Django Tests
+          entry: './run_django_tests.sh'
+          always_run: true
+          language: system
+          pass_filenames: false

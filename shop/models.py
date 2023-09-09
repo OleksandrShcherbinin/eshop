@@ -116,8 +116,11 @@ class Product(TimestampedModel):
     )
 
     def save(self, *args, **kwargs) -> None:
-        self.discount = Decimal(
-            round((float(self.price) / float(self.old_price)) * 100 - 100, 2))
+        if self.old_price:
+            self.discount = Decimal(
+                round((float(self.price) / float(self.old_price))
+                      * 100 - 100, 2)
+            )
         super().save(*args, **kwargs)
 
     def __str__(self):
